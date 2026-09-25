@@ -1,0 +1,14 @@
+import random 
+letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+numbers = '123456789'
+simbols = '!@#$%^&*'
+a = []
+for letter in range(3):
+    a.append(random.choice(letters))
+for letter in range(3):
+    a.append(random.choice(numbers))
+for letter in range(2):
+    a.append(random.choice(simbols))
+random.shuffle(a)
+for i in a:
+    print(i, end = '')
