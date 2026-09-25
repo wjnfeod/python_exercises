@@ -1,0 +1,16 @@
+text = input("Введите текст: ").lower()
+a = {}
+for symbol in text:
+    if symbol in a:
+        a[symbol] += 1
+    else:
+        a[symbol] = 1
+for i in range(3):
+    max_symbol = ''
+    max_count = 0
+    for symbol in a:
+        if a[symbol] > max_count:
+            max_count = a[symbol]
+            max_symbol = symbol
+    print(max_symbol, max_count)
+    del a[max_symbol]
