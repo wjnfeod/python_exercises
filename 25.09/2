@@ -1,0 +1,17 @@
+number = int(input("введите число: "))
+if number % 2 == 0:
+    a = 'чётное'
+else:
+    a = 'нечётное'
+if number < 0:
+    b = 'отрицательное'
+elif number == 0:
+    b = 'ноль'
+else:
+    b = 'положительное'
+if number >= 10 and number <= 50:
+    c = 'принадлежит диапазону [10,50]'
+else:
+    c = 'не принадлежит диапазону [10,50]'
+print(f"число {number}:")
+print(a + ', ' + b + ', ' + c)
