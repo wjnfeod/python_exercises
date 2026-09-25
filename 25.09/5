@@ -1,0 +1,8 @@
+n = int(input("Введите число: "))
+numbers = list(range(2, n + 1))
+for number in numbers.copy():
+    if number in numbers:
+        for multiple in range(number * 2, n + 1, number):
+            if multiple in numbers:
+                numbers.remove(multiple)
+print(numbers)
