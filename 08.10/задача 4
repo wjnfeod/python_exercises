@@ -1,0 +1,56 @@
+""" Импортируем библиотеку random 
+для генерации рандомного пароля и символов
+"""
+import random
+
+
+""" Введём значение длины через ввод от пользователя, 
+а также заглавные и строчные буквы алфавита, цифры и символы
+"""
+length = int(input("Введите желаемую длину пароля: "))
+lower = "abcdefghijklmnopqrstuvwxyz"
+upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+digits = "0123456789"
+special = "!@#$%"
+
+""" Создадим строку со всеми возможными символами
+"""
+symbols = lower + upper + digits + special
+
+""" Создадим пустую строку куда будет записан наш пароль
+"""
+password = ""
+
+""" Добавим в пароль по одному символу каждого типа,
+чтобы он был более сложным и уникальным
+"""
+password += random.choice(lower)
+password += random.choice(upper)
+password += random.choice(digits)
+password += random.choice(special)
+
+""" Чтобы пароль соответствовал введённой длине
+используем цикл for для _ in range(length - 4),
+чтобы добавить столько рандомных символов с помощью
+команды random.choice(), сколько не хватает для того чтобы длина
+была равна искомой
+"""
+for _ in range(length - 4):
+    password += random.choice(symbols)
+
+""" Преобразуем строку password в список,
+чтобы использовать random.shuffle() для 
+перемешивания символов в пароле
+"""
+password = list(password)
+random.shuffle(password)
+
+""" Преобразуем обратно в строку,
+чтобы был красивый вывод без перечислений символоы через запятую,
+с помощью .join() добавляем все символы из списка с паролем
+в пустую строку
+"""
+password = "".join(password)
+""" Выводим пароль 
+"""
+print("Ваш пароль:", password)
