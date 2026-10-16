@@ -1,0 +1,88 @@
+""" Введём строки с русским и английским алфавитами
+"""
+
+eng_alphabet = "abcdefghijklmnopqrstuvwxyz"
+russ_alphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя"
+
+""" Объявим функцию coding() 
+от параметров word - введённое слово, 
+step = 1 - шаг шифра
+"""
+
+def coding(word, step):
+
+    """ Создадим список coded_word, 
+    куда будут записаны символы закодированного слова
+    """
+    
+    coded_word = []
+    
+    """ Проверим к какому алфавиту принадлежит введённое слово
+    """
+    
+    if word[1] in eng_alphabet:
+        alphabet = eng_alphabet
+    else:
+        alphabet = russ_alphabet
+        
+    """ Для каждой буквы в слове найдем букву шифра 
+    с введённым шагом с помощью цикла for
+    """
+    
+    for char in word:
+    
+        """ Пропишем условие через if, чтобы избежать ситуации, 
+        например, в слове будет буква "я", её индекс с шагом 3, к примеру, будет 36, 
+        но такого индекса нет в алфавите, 
+        поэтому из итогового индекса вычтем длину алфавита, равную количеству символов, 
+        и получим правильный индекс, имеющийся в строке
+        """
+        
+        if (alphabet.index(char) + step) <= len(alphabet):
+            new_index = alphabet.index(char) + step
+        else:
+            new_index = alphabet.index(char) + step - len(alphabet)
+            
+        """ Найдём закодированный символ через индекс и 
+        добавим его в список, где находиться закодированное слово
+        """
+        
+        coded_char = alphabet[new_index]
+        coded_word.append(coded_char)
+        
+    """ Преобразуем этот список в строку, 
+    чтобы у нас вывелось цельное слово, 
+    а не буквы слова через запятую
+    """
+    
+    coded_word_str = "".join(coded_word)
+    
+    """ Выведем закодированное слово
+    """
+    
+    print("Закодированное слово: ", coded_word_str)
+    
+""" Аналогично первой создадим функцию decoding() с теми же параметрами, 
+но изменим правило для нахождения индексов, 
+потому что при декодировании шифра цезаря мы вычитаем шаг, и, 
+например, для символа с нулевым индексом при шаге 3, 
+итоговый индекс будет -3, а такого нет, 
+поэтому прибавим длину алфавита равную количеству букв, 
+чтобы получить нужный индекс
+"""
+
+def decoding(word,step):
+    decoded_word = []
+    if word[1] in eng_alphabet:
+        alphabet = eng_alphabet
+    else:
+        alphabet = russ_alphabet
+    for char in word:
+        if (alphabet.index(char) - step) in  range(len(alphabet)):
+            new_index = alphabet.index(char) - step
+        else:
+            new_index = alphabet.index(char) - step + len(alphabet)
+        decoded_char = alphabet[new_index]
+        decoded_word.append(decoded_char)
+    decoded_word_str = "".join(decoded_word)
+    print("Декодированное слово: ", decoded_word_str)
