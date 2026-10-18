@@ -1,0 +1,86 @@
+import datetime as dt
+from decimal import Decimal
+
+
+goods = {
+    'Пельмени Универсальные': [
+        # Первая партия продукта 'Пельмени Универсальные':
+        {'amount': Decimal('0.5'), 'expiration_date': dt.date(2023, 7, 15)},
+        # Вторая партия продукта 'Пельмени Универсальные':
+        {'amount': Decimal('2'), 'expiration_date': dt.date(2023, 8, 1)},
+    ],
+    'Вода': [
+        {'amount': Decimal('1.5'), 'expiration_date': None}
+    ],
+}
+
+DATE_FORMAT = '%Y-%m-%d'
+
+'''Добавляет функцию, которая проверяет, есть ли название введённого
+продукта в ключах goods, если есть - добавляет в список словарь: ещё одну партию этого продукта и срок годности, если нет - создаёт новый ключ, а вего значение добавляет список с словарём из введенного количества и срока годности
+'''
+def add(items, title, amount, expiration_date=None):
+    if expiration_date:
+        expiration_date = dt.datetime.strptime(expiration_date, DATE_FORMAT).date()
+    data = {'amount': Decimal(amount), 'expiration_date': expiration_date}
+    if title in items:
+        list.append(items[title], data)
+    else:
+        items[title] = [data]
+
+'''Добавляет функцию, которая из строки с названием продукта, его количеством и сроком
+годности возвращает список с этими тремя неупорядоченными переменными, делает три эти
+переменные по заданному формату, связывает эти переменные с функцией add()
+'''
+def add_by_note(items, note):
+    data = str.split(note, ' ')
+    if len(data[-1].split('-')) == 3:
+        expiration_date = data[-1]
+        amount = Decimal(data[-2])
+        title = ' '.join(data[:-2])
+    else:
+        expiration_date = None
+        amount = Decimal(data[-1])
+        title = ' '.join(data[:-1])
+    add(items, title, amount, expiration_date)
+
+'''Добавляет функцию, которая ищет среди всех продуктов холодильника, те
+что содержат в названии введённую строку needle и добавляет их в отдельный список
+'''
+def find(items, needle):
+    needle = needle.lower()
+    products = []
+    for item in items:
+        if needle in item.lower():
+            list.append(products, item)
+    return products
+
+
+
+'''Добавляет функцию, которая для полученных с помощью find()
+значений ищет их суммарное количество
+'''
+def get_amount(items, needle):
+    products = find(items, needle)
+    overall_amount = Decimal(0)
+    for title in products:
+        for count in items[title]:
+            overall_amount += count['amount']
+    return overall_amount
+
+
+'''Добавляет функцию, которая берет сегодняшнюю дату, проходится по всем продуктам и их партиям в холодильнике и ищет тех у которых истекает или истек срок годности через введённое
+количество дней и добавляет продукт с количеством всех истекших партий в список просроченных
+'''
+def get_expired(items, in_advance_days=0):
+    expiration_date = dt.date.today() + dt.timedelta(days=in_advance_days)
+    expired = []
+    for item, values in items.items():
+        total = Decimal(0)
+        for value in values:
+            date = value['expiration_date']
+            if date is not None and date <= expiration_date:
+                total += value['amount']
+        if total > 0:
+            expired.append((item, total))
+    return expired
