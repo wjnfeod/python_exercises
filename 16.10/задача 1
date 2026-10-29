@@ -4,4 +4,4 @@ class Book:
         self.author = author
         self.year = year
     def info(self):
-        return f"Название: {self.title}, Автор: {self.author}, Год: {self.year}"
+        return f"Название книги: {self.title}, автор: {self.author}, год издания: {self.year}"
