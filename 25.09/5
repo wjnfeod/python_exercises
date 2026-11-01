@@ -1,8 +1,14 @@
-n = int(input("Введите число: "))
-numbers = list(range(2, n + 1))
-for number in numbers.copy():
-    if number in numbers:
-        for multiple in range(number * 2, n + 1, number):
-            if multiple in numbers:
-                numbers.remove(multiple)
-print(numbers)
+"""Находит все простые числа от 2 до введённого пользователем числа
+с помощью алгоритма решета Эратосфена.
+"""
+
+limit = int(input("Введите число: "))
+prime_numbers = list(range(2, limit + 1))
+
+for number in prime_numbers.copy():
+    if number in prime_numbers:
+        for multiple in range(number * 2, limit + 1, number):
+            if multiple in prime_numbers:
+                prime_numbers.remove(multiple)
+
+print(prime_numbers)
