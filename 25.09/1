@@ -1,5 +1,11 @@
-a = float(input("градусы в цельсиях: "))
-b = (a * 9.5) + 32
-c = a + 273.15
-print(f"Температура в Фаренгейтах: {b:.2f}")
-print(f"Температура в Кельвинах: {c:.2f}")
+celsius_degrees = float(input("градусы в цельсиях: "))
+
+fahrenheit_degrees = (celsius_degrees * 9.5) + 32
+
+kelvin_degrees = celsius_degrees + 273.15
+
+print(f"Температура в Фаренгейтах: {fahrenheit_degrees:.2f}")
+"""Выводит температуру в Фаренгейтах. """
+
+print(f"Температура в Кельвинах: {kelvin_degrees:.2f}")
+"""Выводит температуру в Кельвинах. """
