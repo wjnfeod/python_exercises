@@ -1,0 +1,98 @@
+class Product:
+    """Создаёт класс товара."""
+
+    def __init__(self, name, price, stock, category):
+        """Создает товар."""
+
+        self.name = name
+        self.price = price
+        self.stock = stock
+        self.category = category
+
+
+class Customer:
+    """Создаёт класс покупателя."""
+
+    def __init__(self, name, email):
+        """Создает покупателя."""
+
+        self.name = name
+        self.email = email
+        self.orders = []
+
+    def add_order(self, order):
+        """Добавляет заказ в историю."""
+
+        self.orders.append(order)
+
+
+class ShoppingCart:
+    """Создаёт класс корзины покупок."""
+
+    def __init__(self):
+        """Создает пустую корзину."""
+
+        self.products = []
+
+    def add_product(self, product, quantity):
+        """Добавляет товар в корзину."""
+
+        if product.stock >= quantity:
+            self.products.append([product, quantity])
+            print("Товар добавлен в корзину")
+        else:
+            print("Недостаточно товара на складе")
+
+    def remove_product(self, product):
+        """Удаляет товар из корзины."""
+
+        for item in self.products:
+            if item[0] == product:
+                self.products.remove(item)
+                print("Товар удален")
+                return
+
+    def update_quantity(self, product, quantity):
+        """Изменяет количество товара."""
+
+        for item in self.products:
+            if item[0] == product:
+                item[1] = quantity
+                print("Количество обновлено")
+                return
+
+    def get_total(self):
+        """Считает общую стоимость корзины."""
+
+        total = 0
+        for item in self.products:
+            total += item[0].price * item[1]
+        return total
+
+
+class Order:
+    """Создаёт класс заказа."""
+
+    def __init__(self, customer, cart):
+        """Создает заказ."""
+
+        self.customer = customer
+        self.cart = cart
+        self.discount = 10
+        self.tax = 10
+        self.total = 0
+
+    def make_order(self):
+        """Оформляет заказ с учетом скидки и налога."""
+
+        total = self.cart.get_total()
+
+        discount_price = total - total * self.discount / 100
+        self.total = discount_price + discount_price * self.tax / 100
+
+        for item in self.cart.products:
+            item[0].stock -= item[1]
+
+        self.customer.add_order(self)
+        print("Заказ оформлен!")
+        print("Итоговая цена:", self.total)
