@@ -10,12 +10,12 @@ class Book:
         return f"Название: {self.title}, Автор: {self.author}, Год: {self.year}"
     
 class Ebook(Book):
-"""Создаёт дочерний класс Ebook От Book"""
+    """Создаёт дочерний класс Ebook От Book"""
 
     def __init__(self, title, author, year, format):
         super().__init__(title, author, year)
         self.format = format
     def info(self):
-    """Переопределяет метод info(). """
+        """Переопределяет метод info(). """
 
         return f"Название: {self.title}, Автор: {self.author}, Год: {self.year}, Формат: {self.format}"
