@@ -1,0 +1,64 @@
+class SpaceShip:
+    """Создаёт класс космического корабля."""
+
+    def __init__(self, fuel, hull, speed):
+        """Создает космический корабль."""
+
+        self.fuel = fuel
+        self.hull = hull
+        self.speed = speed
+
+    def fly(self):
+        """Корабль летит и тратит топливо."""
+
+        if self.fuel > 0:
+            self.fuel -= 10
+            self.speed += 100
+            print("Корабль летит!")
+        else:
+            print("Топливо закончилось!")
+
+    def repair(self):
+        """Ремонтирует корпус корабля."""
+
+        self.hull = 100
+        print("Корпус отремонтирован")
+
+
+class CrewMember:
+    """Создаёт класс члена экипажа."""
+
+    def __init__(self, name, role, health, skill):
+        """Создает члена экипажа."""
+
+        self.name = name
+        self.role = role
+        self.health = health
+        self.skill = skill
+
+    def work(self):
+        """Член экипажа выполняет свою работу."""
+
+        print(self.name, "работает как", self.role)
+
+
+class Mission:
+    """Создаёт класс космической миссии."""
+
+    def __init__(self, goal, resources):
+        """Создает космическую миссию."""
+
+        self.goal = goal
+        self.resources = resources
+
+    def start(self):
+        """Начинает миссию."""
+
+        print("Миссия началась!")
+        print("Цель:", self.goal)
+
+    def event(self):
+        """Создает случайное событие миссии."""
+
+        print("Внимание! На пути астероид!")
+        print("Корабль получил повреждения!")
