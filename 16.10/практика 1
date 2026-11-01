@@ -1,0 +1,28 @@
+class Employee:
+    """Создаёт класс Employee с методом, вычисляющим итоговую зарплату
+    работника с учётом его личной надбавки.
+    """
+
+    def __init__(self, salary, salary_supplement):
+        self.salary = salary
+        self.salary_supplement = salary_supplement
+
+    def salary_calculation(self):
+        """Вычисляет итоговую зарплату работника."""
+
+        employee_salary = self.salary + self.salary_supplement
+        return employee_salary
+
+
+class Manager(Employee):
+    """Создаёт дочерний класс Manager от родительского Employee."""
+
+    def __init__(self, salary, salary_supplement=10000):
+        super().__init__(salary, salary_supplement)
+
+
+class Developer(Employee):
+    """Создаёт дочерний класс Developer от родительского Employee."""
+
+    def __init__(self, salary, salary_supplement=30000):
+        super().__init__(salary, salary_supplement)
