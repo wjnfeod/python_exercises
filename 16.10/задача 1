@@ -1,7 +1,11 @@
 class Book:
+"""Создаёт класс Book. """
+
     def __init__(self, title, author, year):
         self.title = title
         self.author = author
         self.year = year
+
     def info(self):
+    """Возвращает строку с информацией о книге: названием, автором, годом издания. """
         return f"Название книги: {self.title}, автор: {self.author}, год издания: {self.year}"
