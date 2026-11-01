@@ -3,10 +3,10 @@ russ_alphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэ�
 
 
 def coding(word, step):
-"""Создаёт функцию coding() 
-от параметров word - введённое слово, 
-step - шаг шифра.
-"""
+    """Создаёт функцию coding() 
+    от параметров word - введённое слово, 
+    step - шаг шифра.
+    """
     
     coded_word = []
     """Создаёт список coded_word, 
@@ -23,9 +23,9 @@ step - шаг шифра.
     
     
     for char in word:
-    """Ищет для каждой буквы в слове букву шифра 
-    с введённым шагом.
-    """
+        """Ищет для каждой буквы в слове букву шифра 
+        с введённым шагом.
+        """
     
         if (alphabet.index(char) + step) <= len(alphabet):
             new_index = alphabet.index(char) + step
@@ -47,10 +47,10 @@ step - шаг шифра.
     
 
 def decoding(word,step):
-"""Создаёт функцию decoding() 
-от параметров word - введённое слово, 
-step - шаг шифра.
-"""
+    """Создаёт функцию decoding() 
+    от параметров word - введённое слово, 
+    step - шаг шифра.
+    """
 
     decoded_word = []
     """Создаёт список decoded_word, 
@@ -65,9 +65,9 @@ step - шаг шифра.
         alphabet = russ_alphabet
 
     for char in word:
-    """Ищет для каждой закоированной буквы в слове раскодироанную букву 
-    с введённым шагом.
-    """
+        """Ищет для каждой закоированной буквы в слове раскодироанную букву 
+        с введённым шагом.
+        """
 
         if (alphabet.index(char) - step) in  range(len(alphabet)):
             new_index = alphabet.index(char) - step
