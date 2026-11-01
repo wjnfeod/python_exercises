@@ -1,14 +1,30 @@
 import random 
+
+
 letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 numbers = '123456789'
 simbols = '!@#$%^&*'
-a = []
+
+password = []
+"""Создаёт список для символов пароля. """
+
 for letter in range(3):
-    a.append(random.choice(letters))
+    password.append(random.choice(letters))
+    """Добавляет в пароль 3 рандомные буквы. """
+    
 for letter in range(3):
-    a.append(random.choice(numbers))
+    password.append(random.choice(numbers))
+    """Добавляет в пароль 3 рандомные цифры. """
+    
 for letter in range(2):
-    a.append(random.choice(simbols))
-random.shuffle(a)
-for i in a:
-    print(i, end = '')
+    password.append(random.choice(simbols))
+    """Добавляет в пароль 3 рандомных символа. """
+    
+random.shuffle(password)
+"""Перемешивает все элементы в списке с паролем. """
+
+new_password = ("").join(password)
+"""Создаёт строку с итоговым паролем. """
+
+print(new_password)
+"""Выводит итоговый пароль. """
