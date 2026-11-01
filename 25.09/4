@@ -1,16 +1,25 @@
+"""Подсчитывает количество вхождений каждого символа
+во введённом тексте и выводит три наиболее часто встречающихся.
+"""
+
 text = input("Введите текст: ").lower()
-a = {}
+
+symbol_counts = {}
+
 for symbol in text:
-    if symbol in a:
-        a[symbol] += 1
+    if symbol in symbol_counts:
+        symbol_counts[symbol] += 1
     else:
-        a[symbol] = 1
-for i in range(3):
-    max_symbol = ''
+        symbol_counts[symbol] = 1
+
+for _ in range(3):
+    max_symbol = ""
     max_count = 0
-    for symbol in a:
-        if a[symbol] > max_count:
-            max_count = a[symbol]
+
+    for symbol in symbol_counts:
+        if symbol_counts[symbol] > max_count:
+            max_count = symbol_counts[symbol]
             max_symbol = symbol
+
     print(max_symbol, max_count)
-    del a[max_symbol]
+    del symbol_counts[max_symbol]
